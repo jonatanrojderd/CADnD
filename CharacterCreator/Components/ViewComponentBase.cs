@@ -13,7 +13,10 @@ public class ViewComponentBase<TViewModel> : ComponentBase where TViewModel : IV
     protected override async Task OnInitializedAsync()
     {
         ViewModel.PropertyChanged += OnPropertyChanged;
+        
         await base.OnInitializedAsync();
+        
+        await ViewModel.InitializeAsync();
     }
 
     private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
