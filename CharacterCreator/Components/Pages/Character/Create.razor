@@ -31,6 +31,14 @@
             }
         </select>
     </label>
+    
+    <label>
+        Prime Stat
+        @if(ViewModel.Character.Class is not null)
+        {
+            <label style="font-weight: bold">@ViewModel.Character.Class.PrimeStat</label>
+        }
+    </label>
 </div>
 
 <div>
