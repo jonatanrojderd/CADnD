@@ -179,6 +179,12 @@ public partial class CreateViewModel : ViewModelBase
     private void RollStartingGoldDie() => Character.Gold = Random.Shared.RollDice(3).Sum() * 10;
 
     [RelayCommand]
+    private void GoBack()
+    {
+        _navigationManager.NavigateTo("/");
+    }
+    
+    [RelayCommand]
     private async Task Save()
     {
         if (!Verify())
