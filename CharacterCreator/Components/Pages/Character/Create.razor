@@ -1,4 +1,5 @@
 ﻿@page "/create-character"
+@using CharacterCreator.Models
 @inherits ViewComponentBase<CreateViewModel>
 
 <h1>Create a Character</h1>
@@ -8,29 +9,25 @@
         Name
         <input type="text"/>
     </label>
+    
     <label>
         Race
         <select @onchange="args => ViewModel.SelectRaceCommand.Execute(args)">
             <option></option>
-            @if(ViewModel.Races is not null)
+            @foreach (var race in ViewModel.Races)
             {
-                foreach (var race in ViewModel.Races)
-                {
-                    <option>@race.Type</option>
-                }
+                <option>@race.Type</option>
             }
         </select>
     </label>
+    
     <label>
         Class
         <select @onchange="args => ViewModel.SelectClassCommand.Execute(args)">
             <option></option>
-            @if(ViewModel.Classes is not null)
+            @foreach (var c in ViewModel.Classes)
             {
-                foreach (var c in ViewModel.Classes)
-                {
-                    <option>@c.Type</option>
-                }
+                <option>@c.Type</option>
             }
         </select>
     </label>
@@ -39,41 +36,63 @@
 <div>
     <label>
         STR
-        <input type="text"/>
-    </label>
-    
-    <br/>
-    
-    <label>
-        INT
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Strength"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Strength)">🎲</button>
     </label>
 
     <br/>
-    
+
+    <label>
+        INT
+        <input type="text" @bind-value="@ViewModel.Character.Intelligence"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Intelligence)">🎲</button>
+    </label>
+
+    <br/>
+
     <label>
         WIS
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Wisdom"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Wisdom)">🎲</button>
     </label>
 
     <br/>
 
     <label>
         DEX
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Dexterity"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Dexterity)">🎲</button>
     </label>
 
     <br/>
 
     <label>
         CON
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Constitution"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Constitution)">🎲</button>
     </label>
 
     <br/>
 
     <label>
         CHA
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Charisma"/>
+        <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Charisma)">🎲</button>
+    </label>
+
+    <br/>
+
+    <label>
+        Hit Points
+        <input type="text" @bind-value="@ViewModel.Character.HitPoints"/>
+        <button @onclick="ViewModel.RollHitPointsDieCommand.Execute" disabled="@(ViewModel.Character.Class is null)">🎲</button>
+    </label>
+
+    <br/>
+
+    <label>
+        Starting Gold
+        <input type="text" @bind-value="@ViewModel.Character.Gold"/>
+        <button @onclick="ViewModel.RollStartingGoldDieCommand.Execute">🎲</button>
     </label>
 </div>
