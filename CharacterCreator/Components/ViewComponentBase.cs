@@ -8,7 +8,10 @@ public class ViewComponentBase<TViewModel> : ComponentBase where TViewModel : IV
 {
     [Inject]
     [NotNull]
-    protected TViewModel ViewModel { get; set; } = default!;
+    protected TViewModel? ViewModel { get; set; }
+    
+    [Inject, NotNull]
+    public NavigationManager? NavigationManager { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -16,7 +19,7 @@ public class ViewComponentBase<TViewModel> : ComponentBase where TViewModel : IV
         
         await base.OnInitializedAsync();
         
-        await ViewModel.InitializeAsync();
+        await ViewModel.InitializeAsync(NavigationManager);
     }
 
     private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
