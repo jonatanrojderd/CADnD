@@ -9,6 +9,8 @@ namespace CharacterCreator.Components.Pages.Character;
 public partial class CreateViewModel : ViewModelBase
 {
     private IDataSerializer _dataSerializer;
+    private IDataContainer _dataContainer;
+    private NavigationManager _navigationManager;
 
     [ObservableProperty]
     private CharacterModel _character = new();
@@ -19,20 +21,23 @@ public partial class CreateViewModel : ViewModelBase
     [ObservableProperty]
     private IList<ClassModel> _classes = [];
 
-    public override async Task InitializeAsync()
+
+    public override async Task InitializeAsync(NavigationManager navigationManager)
     {
-        await base.InitializeAsync();
+        await base.InitializeAsync(navigationManager);
+        
+        _navigationManager = navigationManager;
 
         _dataSerializer = Application.Current.Handler.MauiContext.Services.GetService<IDataSerializer>();
-        var data = await _dataSerializer!.DeserializeAsync();
+        _dataContainer = await _dataSerializer!.DeserializeAsync();
 
-        Races = data.Races;
+        Races = _dataContainer.Races;
         Classes = [];
     }
 
     public int GetAbilityScoreSum(AbilityScore abilityScore)
     {
-        if (Character.Race is null || Character.Race.Modifiers.Count <= 0)
+        if (Character.Race is null)
             return 0;
 
         if (Character.Race.Modifiers.TryGetValue(abilityScore, out var value))
@@ -174,10 +179,15 @@ public partial class CreateViewModel : ViewModelBase
     private void RollStartingGoldDie() => Character.Gold = Random.Shared.RollDice(3).Sum() * 10;
 
     [RelayCommand]
-    private void Save()
+    private async Task Save()
     {
         if (!Verify())
             return;
+
+        _dataContainer.Characters.Add(Character);
+        await _dataSerializer.SerializeAsync(_dataContainer);
+        
+        _navigationManager.NavigateTo("/");
     }
 
     private bool Verify()
@@ -195,32 +205,32 @@ public partial class CreateViewModel : ViewModelBase
                 {
                     case AbilityScore.Strength:
                     {
-                        meetsRequirement = Character.Strength >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Strength) >= value;
                         break;
                     }
                     case AbilityScore.Intelligence:
                     {
-                        meetsRequirement = Character.Intelligence >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Intelligence) >= value;
                         break;
                     }
                     case AbilityScore.Wisdom:
                     {
-                        meetsRequirement = Character.Wisdom >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Wisdom) >= value;
                         break;
                     }
                     case AbilityScore.Dexterity:
                     {
-                        meetsRequirement = Character.Dexterity >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Dexterity) >= value;
                         break;
                     }
                     case AbilityScore.Constitution:
                     {
-                        meetsRequirement = Character.Constitution >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Constitution) >= value;
                         break;
                     }
                     case AbilityScore.Charisma:
                     {
-                        meetsRequirement = Character.Charisma >= value;
+                        meetsRequirement = GetAbilityScoreSum(AbilityScore.Charisma) >= value;
                         break;
                     }
                     case AbilityScore.None:
