@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using CharacterCreator.Utilities;
 using Microsoft.AspNetCore.Components;
 
 namespace CharacterCreator.Components;
 
 public class ViewComponentBase<TViewModel> : ComponentBase where TViewModel : IViewModel
 {
-    [Inject]
-    [NotNull]
+    [Inject, NotNull]
     protected TViewModel? ViewModel { get; set; }
+    
+    [Inject, NotNull]
+    public IDataSerializer? DataSerializer { get; set; }
     
     [Inject, NotNull]
     public NavigationManager? NavigationManager { get; set; }
@@ -19,7 +22,7 @@ public class ViewComponentBase<TViewModel> : ComponentBase where TViewModel : IV
         
         await base.OnInitializedAsync();
         
-        await ViewModel.InitializeAsync(NavigationManager);
+        await ViewModel.InitializeAsync(DataSerializer, NavigationManager);
     }
 
     private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)

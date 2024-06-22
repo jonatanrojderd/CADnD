@@ -22,14 +22,14 @@ public partial class CreateViewModel : ViewModelBase
     private IList<ClassModel> _classes = [];
 
 
-    public override async Task InitializeAsync(NavigationManager navigationManager)
+    public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
-        await base.InitializeAsync(navigationManager);
+        await base.InitializeAsync(dataSerializer, navigationManager);
         
         _navigationManager = navigationManager;
 
-        _dataSerializer = Application.Current.Handler.MauiContext.Services.GetService<IDataSerializer>();
-        _dataContainer = await _dataSerializer!.DeserializeAsync();
+        _dataSerializer = dataSerializer;
+        _dataContainer = await _dataSerializer.DeserializeAsync();
 
         Races = _dataContainer.Races;
         Classes = [];
