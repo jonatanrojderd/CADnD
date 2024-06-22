@@ -37,4 +37,10 @@ public partial class HomeViewModel : ViewModelBase
     {
         _navigationManager.NavigateTo($"/edit-character?index={index}&edit={false}");
     }
+    
+    [RelayCommand]
+    private void EditRace(int index){}
+    
+    [RelayCommand]
+    private void EditClass(int index){}
 }

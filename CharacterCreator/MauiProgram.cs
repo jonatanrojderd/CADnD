@@ -1,5 +1,7 @@
 ﻿using CharacterCreator.Components.Pages;
 using CharacterCreator.Components.Pages.Character;
+using CharacterCreator.Components.Pages.Class;
+using CharacterCreator.Components.Pages.Race;
 using CharacterCreator.Utilities;
 using Microsoft.Extensions.Logging;
 
@@ -29,6 +31,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<HomeViewModel>();
         builder.Services.AddTransient<CreateViewModel>();
         builder.Services.AddTransient<EditViewModel>();
+        builder.Services.AddTransient<CreateRaceViewModel>();
+        builder.Services.AddTransient<CreateClassViewModel>();
 
         return builder.Build();
     }
