@@ -1,5 +1,152 @@
 {
-    "characters": [],
+    "characters": [
+        {
+            "name": "Chris P. Bacon",
+            "strength": 11,
+            "intelligence": 15,
+            "wisdom": 15,
+            "dexterity": 9,
+            "constitution": 8,
+            "charisma": 15,
+            "race": {
+                "type": "Dwarf",
+                "minimumStats": {
+                    "Constitution": 9
+                },
+                "modifiers": {
+                    "Charisma": -1,
+                    "Constitution": 1
+                },
+                "racialAbility": "Infravision",
+                "allowedClasses": [
+                    {
+                        "type": "Bard",
+                        "hitDie": 6,
+                        "primeStat": 32
+                    },
+                    {
+                        "type": "Cleric",
+                        "hitDie": 6,
+                        "primeStat": 4
+                    },
+                    {
+                        "type": "Fighter",
+                        "hitDie": 8,
+                        "primeStat": 1
+                    },
+                    {
+                        "type": "Thief",
+                        "hitDie": 4,
+                        "primeStat": 8
+                    }
+                ]
+            },
+            "class": {
+                "type": "Bard",
+                "hitDie": 6,
+                "primeStat": 32
+            },
+            "hitPoints": 1,
+            "gold": 90
+        },
+        {
+            "name": "Snoork",
+            "strength": 8,
+            "intelligence": 14,
+            "wisdom": 14,
+            "dexterity": 9,
+            "constitution": 14,
+            "charisma": 8,
+            "race": {
+                "type": "Gnome",
+                "minimumStats": {
+                    "Constitution": 9,
+                    "Intelligence": 9
+                },
+                "modifiers": {},
+                "racialAbility": "Defensive Bonus",
+                "allowedClasses": [
+                    {
+                        "type": "Cleric",
+                        "hitDie": 6,
+                        "primeStat": 4
+                    },
+                    {
+                        "type": "Fighter",
+                        "hitDie": 8,
+                        "primeStat": 1
+                    },
+                    {
+                        "type": "Thief",
+                        "hitDie": 4,
+                        "primeStat": 8
+                    },
+                    {
+                        "type": "Wizard",
+                        "hitDie": 4,
+                        "primeStat": 2
+                    }
+                ]
+            },
+            "class": {
+                "type": "Wizard",
+                "hitDie": 4,
+                "primeStat": 2
+            },
+            "hitPoints": 5,
+            "gold": 110
+        },
+        {
+            "name": "Wargutz the Third",
+            "strength": 15,
+            "intelligence": 9,
+            "wisdom": 8,
+            "dexterity": 10,
+            "constitution": 12,
+            "charisma": 5,
+            "race": {
+                "type": "Halfling",
+                "minimumStats": {
+                    "Constitution": 9,
+                    "Dexterity": 9
+                },
+                "modifiers": {
+                    "Dexterity": 1,
+                    "Strength": -1
+                },
+                "racialAbility": "Initiative Bonus",
+                "allowedClasses": [
+                    {
+                        "type": "Bard",
+                        "hitDie": 6,
+                        "primeStat": 32
+                    },
+                    {
+                        "type": "Druid",
+                        "hitDie": 6,
+                        "primeStat": 4
+                    },
+                    {
+                        "type": "Fighter",
+                        "hitDie": 8,
+                        "primeStat": 1
+                    },
+                    {
+                        "type": "Thief",
+                        "hitDie": 4,
+                        "primeStat": 8
+                    }
+                ]
+            },
+            "class": {
+                "type": "Thief",
+                "hitDie": 4,
+                "primeStat": 8
+            },
+            "hitPoints": 3,
+            "gold": 130
+        }
+    ],
     "races": [
         {
             "type": "Dwarf",

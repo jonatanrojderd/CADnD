@@ -57,6 +57,9 @@ public class DataSerializer : IDataSerializer
     {
         try
         {
+            if (!File.Exists($"{_appDataDirectory}/{Filename}"))
+                await InitializeDataAsync();
+
             await using var file = File.Create($"{_appDataDirectory}/{Filename}");
             await JsonSerializer.SerializeAsync(file, dataContainer, _serializerOptions);
         }
@@ -71,6 +74,9 @@ public class DataSerializer : IDataSerializer
     {
         try
         {
+            if (!File.Exists($"{_appDataDirectory}/{Filename}"))
+                await InitializeDataAsync();
+            
             await using var file = File.OpenRead($"{_appDataDirectory}/{Filename}");
             var dataContainer = await JsonSerializer.DeserializeAsync<DataContainer>(file, _serializerOptions);
 
