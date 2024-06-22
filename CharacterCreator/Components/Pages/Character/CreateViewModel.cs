@@ -34,7 +34,7 @@ public partial class CreateViewModel : ViewModelBase
     private void SelectRace(ChangeEventArgs args)
     {
         Character.Class = null!;
-        
+
         var selectedRace = args.Value!.ToString();
         if (string.IsNullOrWhiteSpace(selectedRace))
         {
@@ -139,4 +139,69 @@ public partial class CreateViewModel : ViewModelBase
 
     [RelayCommand]
     private void RollStartingGoldDie() => Character.Gold = Random.Shared.RollDice(3).Sum() * 10;
+
+    [RelayCommand]
+    private void Save()
+    {
+        if (!Verify())
+            return;
+    }
+
+    private bool Verify()
+    {
+        if (string.IsNullOrWhiteSpace(Character.Name))
+            return false;
+
+        var characterRace = Character.Race;
+        if (characterRace is not null && characterRace.MinimumStats.Count > 0)
+        {
+            var meetsRequirement = false;
+            foreach (var (abilityScore, value) in characterRace.MinimumStats)
+            {
+                switch (abilityScore)
+                {
+                    case AbilityScore.Strength:
+                    {
+                        meetsRequirement = Character.Strength >= value;
+                        break;
+                    }
+                    case AbilityScore.Intelligence:
+                    {
+                        meetsRequirement = Character.Intelligence >= value;
+                        break;
+                    }
+                    case AbilityScore.Wisdom:
+                    {
+                        meetsRequirement = Character.Wisdom >= value;
+                        break;
+                    }
+                    case AbilityScore.Dexterity:
+                    {
+                        meetsRequirement = Character.Dexterity >= value;
+                        break;
+                    }
+                    case AbilityScore.Constitution:
+                    {
+                        meetsRequirement = Character.Constitution >= value;
+                        break;
+                    }
+                    case AbilityScore.Charisma:
+                    {
+                        meetsRequirement = Character.Charisma >= value;
+                        break;
+                    }
+                    case AbilityScore.None:
+                    default:
+                    {
+                        break;
+                    }
+                }
+
+                if (!meetsRequirement)
+                    return false;
+            }
+        }
+
+        return true;
+    }
 }

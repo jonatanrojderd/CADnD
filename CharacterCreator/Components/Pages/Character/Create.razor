@@ -7,7 +7,7 @@
 <div>
     <label>
         Name
-        <input type="text"/>
+        <input type="text" @bind-value="@ViewModel.Character.Name"/>
     </label>
     
     <label>
@@ -103,4 +103,8 @@
         <input type="text" @bind-value="@ViewModel.Character.Gold"/>
         <button @onclick="ViewModel.RollStartingGoldDieCommand.Execute">🎲</button>
     </label>
+</div>
+
+<div>
+    <button @onclick="ViewModel.SaveCommand.Execute">Save</button>
 </div>
