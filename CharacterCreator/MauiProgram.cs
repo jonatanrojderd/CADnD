@@ -1,4 +1,6 @@
 ﻿using CharacterCreator.Components.Pages;
+using CharacterCreator.Components.Pages.Character;
+using CharacterCreator.Utilities;
 using Microsoft.Extensions.Logging;
 
 namespace CharacterCreator;
@@ -19,8 +21,11 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
+        builder.Services.AddSingleton<IDataSerializer, DataSerializer>();
+        builder.Services.AddSingleton<IDataContainer, DataContainer>();
+        
         builder.Services.AddSingleton<HomeViewModel>();
-        builder.Services.AddTransient<CounterViewModel>();
+        builder.Services.AddTransient<CreateViewModel>();
 
         return builder.Build();
     }

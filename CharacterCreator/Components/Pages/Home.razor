@@ -4,3 +4,51 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@if (ViewModel.CreatedCharacters.Any())
+{
+    <table>
+        @foreach (var character in ViewModel.CreatedCharacters)
+        {
+            <tr>
+                <td>@character</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>There's no created characters yet!</div>
+}
+
+@if (ViewModel.Races.Any())
+{
+    <table>
+        @foreach (var race in ViewModel.Races)
+        {
+            <tr>
+                <td>@race</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>There's no created races yet!</div>
+}
+
+@if (ViewModel.Classes.Any())
+{
+    <table>
+        @foreach (var c in ViewModel.Classes)
+        {
+            <tr>
+                <td>@c</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>There's no created classes yet!</div>
+}
