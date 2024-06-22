@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CharacterCreator.Components.Pages;
+using Microsoft.Extensions.Logging;
 
 namespace CharacterCreator;
 
@@ -17,6 +18,9 @@ public static class MauiProgram
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
 #endif
+
+        builder.Services.AddSingleton<HomeViewModel>();
+        builder.Services.AddTransient<CounterViewModel>();
 
         return builder.Build();
     }
