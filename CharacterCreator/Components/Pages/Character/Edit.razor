@@ -1,0 +1,67 @@
+﻿@page "/edit-character/"
+@inherits EditView
+
+@if (ViewModel.EditMode)
+{
+    // TODO: Ignore Edit Mode for now.
+    <h3>Edit</h3>
+}
+else
+{
+    <div style="display: flex; flex-direction: row">
+        <button style="padding: 0px 0.5rem" @onclick="ViewModel.GoBackCommand.Execute">Go back</button>
+        <h3 style="padding: 0px 0.5rem" >View</h3>
+    </div>
+}
+
+@* <button @onclick="ViewModel.SwitchModeCommand.Execute">@(ViewModel.EditMode ? "View" : "Edit")</button> *@
+
+@if (ViewModel.Character is not null)
+{
+    <div>
+        Name: 
+        @ViewModel.Character.Name
+    </div>
+    <div>
+        Strength: 
+        @ViewModel.Character.Strength
+    </div>
+    <div>
+        Intelligence: 
+        @ViewModel.Character.Intelligence
+    </div>
+    <div>
+        Wisdom: 
+        @ViewModel.Character.Wisdom
+    </div>
+    <div>
+        Dexterity: 
+        @ViewModel.Character.Dexterity
+    </div>
+    <div>
+        Constitution: 
+        @ViewModel.Character.Constitution
+    </div>
+    <div>
+        Charisma: 
+        @ViewModel.Character.Charisma
+    </div>
+
+    <div>
+        HitPoints: 
+        @ViewModel.Character.HitPoints
+    </div>
+    <div>
+        Gold: 
+        @ViewModel.Character.Gold
+    </div>
+
+    <div>
+        Race: 
+        @ViewModel.Character.Race.Type
+    </div>
+    <div>
+        Class: 
+        @ViewModel.Character.Class.Type
+    </div>
+}

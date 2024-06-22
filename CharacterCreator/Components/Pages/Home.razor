@@ -5,50 +5,57 @@
 
 Welcome to your new app.
 
-@if (ViewModel.CreatedCharacters.Any())
-{
-    <table>
-        @foreach (var character in ViewModel.CreatedCharacters)
-        {
-            <tr>
-                <td>@character</td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div>There's no created characters yet!</div>
-}
+<div style="display: flex; flex-direction: row;">
+    @if (ViewModel.CreatedCharacters.Any())
+    {
+        <table style="margin: 0 2.5rem;">
+            @for (var i = 0; i < ViewModel.CreatedCharacters.Count; i++)
+            {
+                var character = ViewModel.CreatedCharacters[i];
+                <tr>
 
-@if (ViewModel.Races.Any())
-{
-    <table>
-        @foreach (var race in ViewModel.Races)
-        {
-            <tr>
-                <td>@race</td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div>There's no created races yet!</div>
-}
+                    @{
+                        var index = i;
+                    }
+                    <td id="@i" @onclick="() => ViewModel.ViewCharacterCommand.Execute(index)">@character</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>There's no created characters yet!</div>
+    }
 
-@if (ViewModel.Classes.Any())
-{
-    <table>
-        @foreach (var c in ViewModel.Classes)
-        {
-            <tr>
-                <td>@c</td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div>There's no created classes yet!</div>
-}
+    @if (ViewModel.Races.Any())
+    {
+        <table style="margin: 0 2.5rem;">
+            @foreach (var race in ViewModel.Races)
+            {
+                <tr>
+                    <td>@race</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>There's no created races yet!</div>
+    }
+
+    @if (ViewModel.Classes.Any())
+    {
+        <table style="margin: 0 2.5rem;">
+            @foreach (var c in ViewModel.Classes)
+            {
+                <tr>
+                    <td>@c</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>There's no created classes yet!</div>
+    }
+</div>
