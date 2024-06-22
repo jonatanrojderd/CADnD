@@ -1,0 +1,79 @@
+﻿@page "/create-character"
+@inherits ViewComponentBase<CreateViewModel>
+
+<h1>Create a Character</h1>
+
+<div>
+    <label>
+        Name
+        <input type="text"/>
+    </label>
+    <label>
+        Race
+        <select @onchange="args => ViewModel.SelectRaceCommand.Execute(args)">
+            <option></option>
+            @if(ViewModel.Races is not null)
+            {
+                foreach (var race in ViewModel.Races)
+                {
+                    <option>@race.Type</option>
+                }
+            }
+        </select>
+    </label>
+    <label>
+        Class
+        <select @onchange="args => ViewModel.SelectClassCommand.Execute(args)">
+            <option></option>
+            @if(ViewModel.Classes is not null)
+            {
+                foreach (var c in ViewModel.Classes)
+                {
+                    <option>@c.Type</option>
+                }
+            }
+        </select>
+    </label>
+</div>
+
+<div>
+    <label>
+        STR
+        <input type="text"/>
+    </label>
+    
+    <br/>
+    
+    <label>
+        INT
+        <input type="text"/>
+    </label>
+
+    <br/>
+    
+    <label>
+        WIS
+        <input type="text"/>
+    </label>
+
+    <br/>
+
+    <label>
+        DEX
+        <input type="text"/>
+    </label>
+
+    <br/>
+
+    <label>
+        CON
+        <input type="text"/>
+    </label>
+
+    <br/>
+
+    <label>
+        CHA
+        <input type="text"/>
+    </label>
+</div>
