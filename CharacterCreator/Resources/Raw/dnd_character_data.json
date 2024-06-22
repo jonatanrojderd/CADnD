@@ -1,0 +1,226 @@
+{
+    "characters": [],
+    "races": [
+        {
+            "type": "Dwarf",
+            "minimumStats": {
+                "Constitution": 9
+            },
+            "modifiers": {
+                "Charisma": -1,
+                "Constitution": 1
+            },
+            "racialAbility": "Infravision",
+            "allowedClasses": [
+                {
+                    "type": "Bard",
+                    "hitDie": 6,
+                    "primeStat": 32
+                },
+                {
+                    "type": "Cleric",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Fighter",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Thief",
+                    "hitDie": 4,
+                    "primeStat": 8
+                }
+            ]
+        },
+        {
+            "type": "Elf",
+            "minimumStats": {
+                "Intelligence": 9
+            },
+            "modifiers": {
+                "Constitution": -1,
+                "Dexterity": 1
+            },
+            "racialAbility": "Detect Secret Doors",
+            "allowedClasses": [
+                {
+                    "type": "Cleric",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Druid",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Fighter",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Ranger",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Thief",
+                    "hitDie": 4,
+                    "primeStat": 8
+                },
+                {
+                    "type": "Wizard",
+                    "hitDie": 4,
+                    "primeStat": 2
+                }
+            ]
+        },
+        {
+            "type": "Gnome",
+            "minimumStats": {
+                "Constitution": 9,
+                "Intelligence": 9
+            },
+            "modifiers": {},
+            "racialAbility": "Defensive Bonus",
+            "allowedClasses": [
+                {
+                    "type": "Cleric",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Fighter",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Thief",
+                    "hitDie": 4,
+                    "primeStat": 8
+                },
+                {
+                    "type": "Wizard",
+                    "hitDie": 4,
+                    "primeStat": 2
+                }
+            ]
+        },
+        {
+            "type": "Halfling",
+            "minimumStats": {
+                "Constitution": 9,
+                "Dexterity": 9
+            },
+            "modifiers": {
+                "Dexterity": 1,
+                "Strength": -1
+            },
+            "racialAbility": "Initiative Bonus",
+            "allowedClasses": [
+                {
+                    "type": "Bard",
+                    "hitDie": 6,
+                    "primeStat": 32
+                },
+                {
+                    "type": "Druid",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Fighter",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Thief",
+                    "hitDie": 4,
+                    "primeStat": 8
+                }
+            ]
+        },
+        {
+            "type": "Human",
+            "minimumStats": {},
+            "modifiers": {},
+            "racialAbility": "None",
+            "allowedClasses": [
+                {
+                    "type": "Bard",
+                    "hitDie": 6,
+                    "primeStat": 32
+                },
+                {
+                    "type": "Cleric",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Druid",
+                    "hitDie": 6,
+                    "primeStat": 4
+                },
+                {
+                    "type": "Fighter",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Ranger",
+                    "hitDie": 8,
+                    "primeStat": 1
+                },
+                {
+                    "type": "Thief",
+                    "hitDie": 4,
+                    "primeStat": 8
+                },
+                {
+                    "type": "Wizard",
+                    "hitDie": 4,
+                    "primeStat": 2
+                }
+            ]
+        }
+    ],
+    "classes": [
+        {
+            "type": "Bard",
+            "hitDie": 6,
+            "primeStat": 32
+        },
+        {
+            "type": "Cleric",
+            "hitDie": 6,
+            "primeStat": 4
+        },
+        {
+            "type": "Druid",
+            "hitDie": 6,
+            "primeStat": 4
+        },
+        {
+            "type": "Fighter",
+            "hitDie": 8,
+            "primeStat": 1
+        },
+        {
+            "type": "Ranger",
+            "hitDie": 8,
+            "primeStat": 1
+        },
+        {
+            "type": "Thief",
+            "hitDie": 4,
+            "primeStat": 8
+        },
+        {
+            "type": "Wizard",
+            "hitDie": 4,
+            "primeStat": 2
+        }
+    ]
+}
