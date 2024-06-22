@@ -9,7 +9,7 @@
         Name
         <input type="text" @bind-value="@ViewModel.Character.Name"/>
     </label>
-    
+
     <label>
         Race
         <select @onchange="args => ViewModel.SelectRaceCommand.Execute(args)">
@@ -20,7 +20,7 @@
             }
         </select>
     </label>
-    
+
     <label>
         Class
         <select @onchange="args => ViewModel.SelectClassCommand.Execute(args)">
@@ -31,10 +31,10 @@
             }
         </select>
     </label>
-    
+
     <label>
         Prime Stat
-        @if(ViewModel.Character.Class is not null)
+        @if (ViewModel.Character.Class is not null)
         {
             <label style="font-weight: bold">@ViewModel.Character.Class.PrimeStat</label>
         }
@@ -46,6 +46,7 @@
         STR
         <input type="text" @bind-value="@ViewModel.Character.Strength"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Strength)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Strength)
     </label>
 
     <br/>
@@ -54,6 +55,7 @@
         INT
         <input type="text" @bind-value="@ViewModel.Character.Intelligence"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Intelligence)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Intelligence)
     </label>
 
     <br/>
@@ -62,6 +64,7 @@
         WIS
         <input type="text" @bind-value="@ViewModel.Character.Wisdom"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Wisdom)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Wisdom)
     </label>
 
     <br/>
@@ -70,6 +73,7 @@
         DEX
         <input type="text" @bind-value="@ViewModel.Character.Dexterity"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Dexterity)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Dexterity)
     </label>
 
     <br/>
@@ -78,6 +82,7 @@
         CON
         <input type="text" @bind-value="@ViewModel.Character.Constitution"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Constitution)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Constitution)
     </label>
 
     <br/>
@@ -86,6 +91,7 @@
         CHA
         <input type="text" @bind-value="@ViewModel.Character.Charisma"/>
         <button @onclick="() => ViewModel.RollDieCommand.Execute(AbilityScore.Charisma)">🎲</button>
+        @ViewModel.GetAbilityScoreSum(AbilityScore.Charisma)
     </label>
 
     <br/>

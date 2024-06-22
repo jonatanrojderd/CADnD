@@ -30,6 +30,39 @@ public partial class CreateViewModel : ViewModelBase
         Classes = [];
     }
 
+    public int GetAbilityScoreSum(AbilityScore abilityScore)
+    {
+        if (Character.Race is null || Character.Race.Modifiers.Count <= 0)
+            return 0;
+
+        if (Character.Race.Modifiers.TryGetValue(abilityScore, out var value))
+        {
+            return abilityScore switch
+            {
+                AbilityScore.Strength => Character.Strength + value,
+                AbilityScore.Intelligence => Character.Intelligence + value,
+                AbilityScore.Wisdom => Character.Wisdom + value,
+                AbilityScore.Dexterity => Character.Dexterity + value,
+                AbilityScore.Constitution => Character.Constitution + value,
+                AbilityScore.Charisma => Character.Charisma + value,
+                AbilityScore.None => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(abilityScore), abilityScore, null)
+            };
+        }
+
+        return abilityScore switch
+        {
+            AbilityScore.Strength => Character.Strength,
+            AbilityScore.Intelligence => Character.Intelligence,
+            AbilityScore.Wisdom => Character.Wisdom,
+            AbilityScore.Dexterity => Character.Dexterity,
+            AbilityScore.Constitution => Character.Constitution,
+            AbilityScore.Charisma => Character.Charisma,
+            AbilityScore.None => 0,
+            _ => throw new ArgumentOutOfRangeException(nameof(abilityScore), abilityScore, null)
+        };
+    }
+
     [RelayCommand]
     private void SelectRace(ChangeEventArgs args)
     {
