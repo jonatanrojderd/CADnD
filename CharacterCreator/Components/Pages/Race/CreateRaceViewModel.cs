@@ -79,6 +79,12 @@ public partial class CreateRaceViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private void GoBack()
+    {
+        _navigationManager.NavigateTo("/");
+    }
+
+    [RelayCommand]
     private async Task SaveAsync()
     {
         Race.MinimumStats = Race.MinimumStats.Where(stat => stat.Value != 0).ToDictionary();

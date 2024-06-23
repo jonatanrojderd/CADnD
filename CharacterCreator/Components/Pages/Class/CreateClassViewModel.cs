@@ -42,6 +42,12 @@ public partial class CreateClassViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private void GoBack()
+    {
+        _navigationManager.NavigateTo("/");
+    }
+
+    [RelayCommand]
     private async Task Save()
     {
         var dataContainer = await _dataSerializer.DeserializeAsync();

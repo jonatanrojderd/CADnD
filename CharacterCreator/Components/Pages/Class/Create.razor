@@ -2,7 +2,11 @@
 @using CharacterCreator.Models
 @inherits ViewComponentBase<CreateClassViewModel>
 
-<h3>Create a Class</h3>
+<div style="display: flex; flex-direction: row">
+    <button style="padding: 0px 0.5rem" @onclick="ViewModel.GoBackCommand.Execute">Go back</button>
+    <h3 style="padding: 0px 0.5rem">Create a Class</h3>
+</div>
+
 <div>
     <label>
         Type
