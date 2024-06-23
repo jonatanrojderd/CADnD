@@ -8,6 +8,9 @@ namespace CharacterCreator.Components.Pages.Race;
 
 public partial class CreateRaceViewModel : ViewModelBase
 {
+    private IDataSerializer _dataSerializer;
+    private NavigationManager _navigationManager;
+    
     [ObservableProperty]
     private RaceModel _race = new();
 
@@ -19,6 +22,9 @@ public partial class CreateRaceViewModel : ViewModelBase
 
     public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
+        _dataSerializer = dataSerializer;
+        _navigationManager = navigationManager;
+        
         await base.InitializeAsync(dataSerializer, navigationManager);
 
         Race.AllowedClasses = new List<ClassModel>();
@@ -77,5 +83,13 @@ public partial class CreateRaceViewModel : ViewModelBase
     {
         Race.MinimumStats = Race.MinimumStats.Where(stat => stat.Value != 0).ToDictionary();
         Race.Modifiers = Race.Modifiers.Where(modifier => modifier.Value != 0).ToDictionary();
+
+        var dataContainer = await _dataSerializer.DeserializeAsync();
+        
+        var races = dataContainer.Races;
+        races.Add(Race);
+        
+        await _dataSerializer.SerializeAsync(dataContainer);
+        _navigationManager.NavigateTo("/");
     }
 }
