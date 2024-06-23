@@ -1,0 +1,53 @@
+﻿@page "/edit-race"
+@using CharacterCreator.Models
+@inherits EditView
+
+<div style="display: flex; flex-direction: row">
+    <button style="padding: 0 0.5rem" @onclick="ViewModel.GoBackCommand.Execute">Go back</button>
+    <h3 style="padding: 0 0.5rem">Edit @ViewModel.Race.Type Race</h3>
+</div>
+
+<div>
+    <label>
+        Racial Ability
+        <input @bind-value="@ViewModel.Race.RacialAbility"/>
+    </label>
+</div>
+
+<div>
+    @foreach (var c in ViewModel.Classes)
+    {
+        var classModel = ViewModel.Race.AllowedClasses.FirstOrDefault(allowedClass => allowedClass.Type == c.Type);
+        
+        <label>
+            @c.Type
+            <input type="checkbox" id="@c.Type" checked="@(classModel is not null)" onchange="@(() => ViewModel.AllowedClassChangedCommand.Execute(c))">
+        </label>
+    }
+</div>
+
+<div>
+    Minimum Stats
+    @foreach (var abilityScore in ViewModel.AbilityScores)
+    {
+        ViewModel.Race.MinimumStats.TryGetValue(abilityScore, out var value);
+        <label>
+            @abilityScore
+            <input type="number" id="@abilityScore" value="@value" @onchange="@(args => ViewModel.MinimumStatChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+        </label>
+    }
+</div>
+
+<div>
+    Modifiers
+    @foreach (var abilityScore in ViewModel.AbilityScores)
+    {
+        ViewModel.Race.Modifiers.TryGetValue(abilityScore, out var value);
+        <label>
+            @abilityScore
+            <input type="number" id="@abilityScore" value="@value" @onchange="@(args => ViewModel.ModifierChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+        </label>
+    }
+</div>
+
+<button @onclick="ViewModel.SaveCommand.Execute">Save</button>

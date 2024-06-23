@@ -9,15 +9,10 @@ Welcome to your new app.
     @if (ViewModel.CreatedCharacters.Any())
     {
         <table style="margin: 0 2.5rem;">
-            @for (var i = 0; i < ViewModel.CreatedCharacters.Count; i++)
+            @foreach (var character in ViewModel.CreatedCharacters)
             {
-                var character = ViewModel.CreatedCharacters[i];
                 <tr>
-
-                    @{
-                        var index = i;
-                    }
-                    <td id="@i" @onclick="() => ViewModel.ViewCharacterCommand.Execute(index)">@character</td>
+                    <td @onclick="() => ViewModel.ViewCharacterCommand.Execute(ViewModel.CreatedCharacters.IndexOf(character))">@character</td>
                 </tr>
             }
         </table>
@@ -33,7 +28,7 @@ Welcome to your new app.
             @foreach (var race in ViewModel.Races)
             {
                 <tr>
-                    <td>@race</td>
+                    <td @onclick="() => ViewModel.EditRaceCommand.Execute(ViewModel.Races.IndexOf(race))">@race</td>
                 </tr>
             }
         </table>
@@ -46,9 +41,8 @@ Welcome to your new app.
     @if (ViewModel.Classes.Any())
     {
         <table style="margin: 0 2.5rem;">
-            @for (var i = 0; i < ViewModel.Classes.Count; i++)
+            @foreach (var c in ViewModel.Classes)
             {
-                var c = ViewModel.Classes[i];
                 <tr>
                     <td @onclick="() => ViewModel.EditClassCommand.Execute(ViewModel.Classes.IndexOf(c))">@c</td>
                 </tr>
