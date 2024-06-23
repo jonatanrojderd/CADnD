@@ -7,9 +7,6 @@ namespace CharacterCreator.Components.Pages;
 
 public partial class HomeViewModel : ViewModelBase
 {
-    private IDataSerializer _dataSerializer;
-    private NavigationManager _navigationManager;
-
     [ObservableProperty]
     private IList<string> _createdCharacters = [];
 
@@ -21,11 +18,9 @@ public partial class HomeViewModel : ViewModelBase
 
     public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
-        _navigationManager = navigationManager;
         await base.InitializeAsync(dataSerializer, navigationManager);
 
-        _dataSerializer = dataSerializer;
-        var data = await _dataSerializer.DeserializeAsync();
+        var data = await dataSerializer.DeserializeAsync();
 
         CreatedCharacters = data.Characters.Select(character => character.Name).ToList();
         Races = data.Races.Select(race => race.Type).ToList();
@@ -35,12 +30,18 @@ public partial class HomeViewModel : ViewModelBase
     [RelayCommand]
     private void ViewCharacter(int index)
     {
-        _navigationManager.NavigateTo($"/edit-character?index={index}&edit={false}");
+        NavigationManager.NavigateTo($"/edit-character?index={index}&edit={false}");
     }
-    
+
     [RelayCommand]
-    private void EditRace(int index){}
-    
+    private void EditRace(int index)
+    {
+        NavigationManager.NavigateTo($"/edit-race?index={index}");
+    }
+
     [RelayCommand]
-    private void EditClass(int index){}
+    private void EditClass(int index)
+    {
+        NavigationManager.NavigateTo($"/edit-class?index={index}");
+    }
 }

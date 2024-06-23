@@ -8,9 +8,6 @@ namespace CharacterCreator.Components.Pages.Class;
 
 public partial class CreateClassViewModel : ViewModelBase
 {
-    private IDataSerializer _dataSerializer;
-    private NavigationManager _navigationManager;
-
     [ObservableProperty]
     private ClassModel _class = new();
 
@@ -19,9 +16,6 @@ public partial class CreateClassViewModel : ViewModelBase
 
     public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
-        _dataSerializer = dataSerializer;
-        _navigationManager = navigationManager;
-        
         await base.InitializeAsync(dataSerializer, navigationManager);
 
         AbilityScores = Enum.GetValues<AbilityScore>();
@@ -42,18 +36,12 @@ public partial class CreateClassViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void GoBack()
-    {
-        _navigationManager.NavigateTo("/");
-    }
-
-    [RelayCommand]
     private async Task Save()
     {
-        var dataContainer = await _dataSerializer.DeserializeAsync();
+        var dataContainer = await DataSerializer.DeserializeAsync();
         dataContainer.Classes.Add(Class);
 
-        await _dataSerializer.SerializeAsync(dataContainer);
-        _navigationManager.NavigateTo("/");
+        await DataSerializer.SerializeAsync(dataContainer);
+        NavigationManager.NavigateTo("/");
     }
 }

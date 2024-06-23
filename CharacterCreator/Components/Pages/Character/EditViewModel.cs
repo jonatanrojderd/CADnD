@@ -8,9 +8,6 @@ namespace CharacterCreator.Components.Pages.Character;
 
 public partial class EditViewModel : ViewModelBase
 {
-    private IDataSerializer _dataSerializer;
-    private NavigationManager _navigationManager;
-    
     [ObservableProperty]
     private CharacterModel _character;
 
@@ -19,17 +16,9 @@ public partial class EditViewModel : ViewModelBase
 
     public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
-        _navigationManager = navigationManager;
-        _dataSerializer = dataSerializer;
         await base.InitializeAsync(dataSerializer, navigationManager);
 
         Character = (await dataSerializer.DeserializeAsync()).Characters[CharacterIndex];
-    }
-
-    [RelayCommand]
-    private void GoBack()
-    {
-        _navigationManager.NavigateTo("/");
     }
     
     [RelayCommand]

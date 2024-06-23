@@ -8,9 +8,7 @@ namespace CharacterCreator.Components.Pages.Character;
 
 public partial class CreateViewModel : ViewModelBase
 {
-    private IDataSerializer _dataSerializer;
     private IDataContainer _dataContainer;
-    private NavigationManager _navigationManager;
 
     [ObservableProperty]
     private CharacterModel _character = new();
@@ -21,15 +19,11 @@ public partial class CreateViewModel : ViewModelBase
     [ObservableProperty]
     private IList<ClassModel> _classes = [];
 
-
     public override async Task InitializeAsync(IDataSerializer dataSerializer, NavigationManager navigationManager)
     {
         await base.InitializeAsync(dataSerializer, navigationManager);
         
-        _navigationManager = navigationManager;
-
-        _dataSerializer = dataSerializer;
-        _dataContainer = await _dataSerializer.DeserializeAsync();
+        _dataContainer = await DataSerializer.DeserializeAsync();
 
         Races = _dataContainer.Races;
         Classes = [];
@@ -177,12 +171,6 @@ public partial class CreateViewModel : ViewModelBase
 
     [RelayCommand]
     private void RollStartingGoldDie() => Character.Gold = Random.Shared.RollDice(3).Sum() * 10;
-
-    [RelayCommand]
-    private void GoBack()
-    {
-        _navigationManager.NavigateTo("/");
-    }
     
     [RelayCommand]
     private async Task Save()
@@ -191,9 +179,9 @@ public partial class CreateViewModel : ViewModelBase
             return;
 
         _dataContainer.Characters.Add(Character);
-        await _dataSerializer.SerializeAsync(_dataContainer);
+        await DataSerializer.SerializeAsync(_dataContainer);
         
-        _navigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/");
     }
 
     private bool Verify()
