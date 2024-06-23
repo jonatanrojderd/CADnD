@@ -1,4 +1,57 @@
 ﻿@page "/create-race"
+@using CharacterCreator.Models
 @inherits ViewComponentBase<CreateRaceViewModel>
 
-<h3>Create</h3>
+<h3>Create a Race</h3>
+
+<div>
+    <label>
+        Type
+        <input @bind-value="@ViewModel.Race.Type"/>
+    </label>
+
+    <label>
+        Racial Ability
+        <input @bind-value="@ViewModel.Race.RacialAbility"/>
+    </label>
+</div>
+
+<div>
+    @foreach (var c in ViewModel.Classes)
+    {
+        @c.Type
+        <input type="checkbox" id="@c.Type" onchange="@(() => ViewModel.AllowedClassChangedCommand.Execute(c))">
+    }
+</div>
+
+<div>
+    @foreach (var abilityScore in ViewModel.AbilityScores)
+    {
+        @abilityScore
+        <input type="checkbox" id="@abilityScore"/>
+    }
+</div>
+
+<div>
+    Minimum Stats
+    @foreach (var abilityScore in ViewModel.AbilityScores)
+    {
+        <label>
+            @abilityScore
+            <input type="number" id="@abilityScore" @onchange="@((args) => ViewModel.MinimumStatChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+        </label>
+    }
+</div>
+
+<div>
+    Modifiers
+    @foreach (var abilityScore in ViewModel.AbilityScores)
+    {
+        <label>
+            @abilityScore
+            <input type="number" id="@abilityScore" @onchange="@((args) => ViewModel.ModifierChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+        </label>
+    }
+</div>
+
+<button @onclick="ViewModel.SaveCommand.Execute">Save</button>
