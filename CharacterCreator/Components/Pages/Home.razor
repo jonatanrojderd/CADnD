@@ -46,10 +46,11 @@ Welcome to your new app.
     @if (ViewModel.Classes.Any())
     {
         <table style="margin: 0 2.5rem;">
-            @foreach (var c in ViewModel.Classes)
+            @for (var i = 0; i < ViewModel.Classes.Count; i++)
             {
+                var c = ViewModel.Classes[i];
                 <tr>
-                    <td>@c</td>
+                    <td @onclick="() => ViewModel.EditClassCommand.Execute(ViewModel.Classes.IndexOf(c))">@c</td>
                 </tr>
             }
         </table>
