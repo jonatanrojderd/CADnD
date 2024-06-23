@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CharacterCreator.Components.Pages.Character;
 
-public partial class EditViewModel : ViewModelBase
+public partial class EditCharacterViewModel : ViewModelBase
 {
     [ObservableProperty]
     private CharacterModel _character;

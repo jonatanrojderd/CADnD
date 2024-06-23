@@ -29,10 +29,15 @@ public static class MauiProgram
         builder.Services.AddSingleton<IDataContainer, DataContainer>();
         
         builder.Services.AddSingleton<HomeViewModel>();
-        builder.Services.AddTransient<CreateViewModel>();
-        builder.Services.AddTransient<EditViewModel>();
+        
+        builder.Services.AddTransient<CreateCharacterViewModel>();
+        builder.Services.AddTransient<EditCharacterViewModel>();
+        
         builder.Services.AddTransient<CreateRaceViewModel>();
+        builder.Services.AddTransient<EditRaceViewModel>();
+        
         builder.Services.AddTransient<CreateClassViewModel>();
+        builder.Services.AddTransient<EditClassViewModel>();
 
         return builder.Build();
     }

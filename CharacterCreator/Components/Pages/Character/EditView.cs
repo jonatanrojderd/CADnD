@@ -1,6 +1,6 @@
 ﻿namespace CharacterCreator.Components.Pages.Character;
 
-public partial class EditView : ViewComponentBase<EditViewModel>
+public partial class EditView : ViewComponentBase<EditCharacterViewModel>
 {
     protected override async Task OnInitializedAsync()
     {

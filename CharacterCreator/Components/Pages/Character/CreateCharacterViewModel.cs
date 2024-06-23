@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CharacterCreator.Components.Pages.Character;
 
-public partial class CreateViewModel : ViewModelBase
+public partial class CreateCharacterViewModel : ViewModelBase
 {
     private IDataContainer _dataContainer;
 
