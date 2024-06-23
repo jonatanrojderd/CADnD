@@ -1,12 +1,15 @@
 ﻿namespace CharacterCreator.Models;
 
-public enum RaceType
+[Flags]
+public enum ClassType
 {
-    Dwarf,
-    Elf,
-    Gnome,
-    Halfling,
-    Human,
+    Bard = 1,
+    Cleric = Bard << 1,
+    Druid = Cleric << 1,
+    Fighter = Druid << 1,
+    Ranger = Fighter << 1,
+    Thief = Ranger << 1,
+    Wizard = Thief << 1,
 
     None = 0
 }

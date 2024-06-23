@@ -1,4 +1,40 @@
 ﻿@page "/create-class"
+@using CharacterCreator.Models
 @inherits ViewComponentBase<CreateClassViewModel>
 
-<h3>Create</h3>
+<h3>Create a Class</h3>
+<div>
+    <label>
+        Type
+        <input @bind-value="@ViewModel.Class.Type"/>
+    </label>
+</div>
+
+<div>
+    <select @onchange="@(ViewModel.AbilityScoreChangedCommand.Execute)">
+        @foreach (var abilityScore in ViewModel.AbilityScores)
+        {
+            if (abilityScore == AbilityScore.None)
+            {
+                <option value="@abilityScore" selected> @abilityScore</option>
+            }
+            else
+            {
+                <option value="@abilityScore">@abilityScore</option>
+            }
+        }
+    </select>
+</div>
+
+<div>
+    <select @onchange="@(ViewModel.HitDieChangedCommand.Execute)">
+        <option value="4" selected>d4</option>
+        <option value="6">d6</option>
+        <option value="8">d8</option>
+        <option value="10">d10</option>
+        <option value="12">d12</option>
+        <option value="20">d20</option>
+    </select>
+</div>
+
+<button @onclick="ViewModel.SaveCommand.Execute">Save</button>

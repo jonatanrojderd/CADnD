@@ -30,7 +30,7 @@
     {
         <label>
             @abilityScore
-            <input type="number" id="@abilityScore" @onchange="@((args) => ViewModel.MinimumStatChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+            <input type="number" id="@abilityScore" @onchange="@(args => ViewModel.MinimumStatChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
         </label>
     }
 </div>
@@ -41,7 +41,7 @@
     {
         <label>
             @abilityScore
-            <input type="number" id="@abilityScore" @onchange="@((args) => ViewModel.ModifierChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
+            <input type="number" id="@abilityScore" @onchange="@(args => ViewModel.ModifierChangedCommand.Execute(new Tuple<AbilityScore, ChangeEventArgs>(abilityScore, args)))">
         </label>
     }
 </div>
